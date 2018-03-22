@@ -1,0 +1,151 @@
+#!/bin/bash
+
+NC='\033[0;49m'
+HIGHLIGHT='\033[1;30;42m'
+BASE_DIR=`dirname "$0"`"/.."
+CLIENT_DIR="$BASE_DIR/client"
+SERVER_DIR="$BASE_DIR/server"
+SCRIPTS_DIR="$BASE_DIR/scripts"
+
+function printWithHighlight() {
+  echo -e "${HIGHLIGHT}${1}${NC}"
+}
+
+function usage() {
+    echo "Usage: $0 <args>"
+    echo
+    echo "Available args:"
+    echo "setup: Sets up the local environment for development"
+    echo "run: Runs the application locally with hot-reloads"
+    echo "lint: Runs the linter for both client and server directories"
+    echo "seed <num fake patients>: Seeds the local Mongo DB with a fake number of phoenix"
+    echo
+    exit 1
+}
+
+function installDependencies() {
+  cd $1
+
+  echo
+  printWithHighlight "Installing dependencies at: $1"
+
+  yarn install
+}
+
+function setup() {
+  installDependencies $SERVER_DIR
+  installDependencies $CLIENT_DIR
+  installDependencies $SCRIPTS_DIR
+
+  printWithHighlight "Fetching mongo"
+  docker-compose up --no-start
+}
+
+function stopMongo() {
+  printWithHighlight "Stopping mongo"
+
+  docker stop mongo  
+}
+
+function startMongo() {
+    if [ $(docker inspect -f '{{.State.Running}}' mongo) = "false" ];
+        then printWithHighlight "Starting mongo"
+             docker start mongo
+             sleep 2
+    fi
+}
+
+function stopServer() {
+  cd $SERVER_DIR
+
+  printWithHighlight "Shutting down server"
+
+  yarn run dev:flushLogs
+  pm2 delete all
+}
+
+function handleInterrupt() {
+  stopServer
+  stopMongo
+}
+
+function runApp() {
+  stopMongo
+  stopServer
+
+  trap handleInterrupt INT
+
+  startMongo
+
+  cd $SERVER_DIR
+
+  printWithHighlight "Starting server"
+
+  yarn dev &
+
+  cd $CLIENT_DIR
+
+  printWithHighlight "Running client"
+
+  yarn dev
+}
+
+function runLinter() {
+  cd $SERVER_DIR
+
+  printWithHighlight "Running linter on server"
+
+  yarn lint
+
+  cd $CLIENT_DIR
+
+  echo
+  printWithHighlight "Running linter on client"
+
+  yarn lint
+}
+
+function seedDatabase() {
+    startMongo
+
+    cd $SCRIPTS_DIR
+
+    printWithHighlight "Seeding database with $1 entries"
+
+    node seedDatabase.js $1
+
+    printWithHighlight "Finished seeding database"
+}
+
+if [ "$1" == "" ]; then
+  usage
+fi
+
+while [ "$1" != "" ]; do
+  case "$1" in
+    ''|-h|--help|help)
+      usage
+      ;;
+    setup)
+      setup
+      shift
+      ;;
+    run)
+      runApp
+      shift
+      ;;
+    lint)
+      runLinter
+      shift
+      ;;
+    seed)
+      seedDatabase $2
+      shift 2
+      ;;
+    *)
+      printWithHighlight "Unknown parameter: $1"
+      usage
+      exit 1
+      ;;
+  esac
+done

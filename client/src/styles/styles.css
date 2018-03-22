@@ -1,0 +1,14 @@
+html {
+  font-family: Armata;
+  font-size: 20px;
+  overflow: hidden;
+}
+
+input {
+  border-style: none;
+}
+
+select {
+  border-style: none;
+  border-radius: 0px;
+}

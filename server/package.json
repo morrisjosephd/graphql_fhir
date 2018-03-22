@@ -1,0 +1,28 @@
+{
+  "name": "server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "yarn run dev:flushLogs && yarn run dev:start && yarn run dev:logs",
+    "dev:flushLogs": "pm2 flush",
+    "dev:logs": "pm2 logs server",
+    "dev:start": "NODE_ENV=dev pm2 start ./bin/www --watch --name 'server'",
+    "lint": "standard --fix"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "~1.18.2",
+    "debug": "~2.6.9",
+    "express": "~4.15.5",
+    "lodash.flatmap": "^4.5.0",
+    "mongodb": "^3.0.4",
+    "morgan": "~1.9.0",
+    "pm2": "^2.10.1"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.0.2",
+    "sinon": "^4.4.2",
+    "standard": "^11.0.0"
+  }
+}

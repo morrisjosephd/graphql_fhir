@@ -1,0 +1,7 @@
+.idea/
+.vscode/
+node_modules/
+bundle.js
+yarn-error.log
+server/dist/*.jpg
+data/
