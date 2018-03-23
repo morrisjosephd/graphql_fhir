@@ -7,7 +7,7 @@ const DropdownWithTitle = styled.div`
   width: 100%;
 `
 
-const LocalLabel = styled(Label)`
+const LocalLabel = Label.extend`
   margin-bottom: 0.5rem;
 `
 

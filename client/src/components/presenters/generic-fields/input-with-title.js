@@ -6,7 +6,7 @@ const InputWithTitle = styled.div`
   width: 100%;
 `
 
-const LocalLabel = styled(Label)`
+const LocalLabel = Label.extend`
   margin-bottom: 0.5rem;
 `
 
@@ -25,8 +25,8 @@ export default class extends React.Component {
 
     return (
       <InputWithTitle>
-        <LocalLabel disabled={disabled} error={error} required={required}>{title}</LocalLabel>
-        <Input disabled={disabled} error={error} required={required} placeholder={placeholder} onChange={event => this.onChange(event)} value={this.state.value} onBlur={() => this.onBlur()} />
+        <LocalLabel className='input-label' disabled={disabled} error={error} required={required}>{title}</LocalLabel>
+        <Input className='input' disabled={disabled} error={error} required={required} placeholder={placeholder} onChange={event => this.onChange(event)} value={this.state.value} onBlur={() => this.onBlur()} />
       </InputWithTitle>
     )
   }

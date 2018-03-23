@@ -15,12 +15,12 @@ const InnerContent = styled.div`
   padding: 1.5rem 2.5rem;
 `
 
-const InstructionalText = styled(H2)`
+const InstructionalText = H2.extend`
   text-align: center;
 `
 
 const createForm = () => (
-  <MainContent>
+  <MainContent className='main-content'>
     <InnerContent>
       <InstructionalText>Enter Phoenix Data</InstructionalText>
       <GatherInfoCard />

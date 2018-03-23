@@ -10,11 +10,11 @@ const GenericCheckbox = styled.div`
   margin-bottom: 0.5rem;
 `
 
-const Label = styled(TextLink)`
+const Label = TextLink.extend`
   color: ${props => props.disabled ? colors.lightGray : colors.primaryRed};
 `
 
-const LocalCheckbox = styled(Checkbox)`
+const LocalCheckbox = Checkbox.extend`
   height: 1rem;
   width: 1rem;
   margin-right: 0.5rem;

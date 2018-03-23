@@ -35,7 +35,7 @@ const SearchSection = styled.div`
   justify-content: space-between;
 `
 
-const SearchInput = styled(Input)`
+const SearchInput = Input.extend`
   margin-right: 1rem;
 `
 
@@ -55,9 +55,9 @@ export default ({ search }) => (
       <GuyFox src={phoenixImage} />
     </ImageSection>
     <SearchSection>
-      <SearchInput placeholder={'Enter phoenix id'} onBlur={(event) => onInputChanged(event)} />
+      <SearchInput className='search-input' placeholder={'Enter phoenix id'} onBlur={(event) => onInputChanged(event)} />
       <SearchButtonWrapper>
-        <Button displayText={'Search'} onClick={() => search(id)} />
+        <Button className='search-button' displayText={'Search'} onClick={() => search(id)} />
       </SearchButtonWrapper>
     </SearchSection>
     <ImageSection />

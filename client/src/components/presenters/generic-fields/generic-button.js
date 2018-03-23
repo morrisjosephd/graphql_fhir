@@ -2,7 +2,7 @@ import React from 'react'
 import { Button } from '../../../styles/components'
 import styled from 'styled-components'
 
-const GenericButton = styled(Button)`
+const GenericButton = Button.extend`
   height: 50px;
   width: 90%;
   padding: 0 5%;

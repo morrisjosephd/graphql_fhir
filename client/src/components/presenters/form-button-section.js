@@ -18,10 +18,10 @@ const ButtonWrapper = styled.div`
 export default ({ clearForm, save }) => (
   <FormButtonSection>
     <ButtonWrapper>
-      <Button alt={'true'} displayText={'Clear'} onClick={clearForm} />
+      <Button className='clear-button' alt={'true'} displayText={'Clear'} onClick={clearForm} />
     </ButtonWrapper>
     <ButtonWrapper>
-      <Button displayText={'Save'} onClick={save} />
+      <Button className='save-button' displayText={'Save'} onClick={save} />
     </ButtonWrapper>
   </FormButtonSection>
 )

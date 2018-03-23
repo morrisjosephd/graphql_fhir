@@ -7,6 +7,7 @@
   "license": "",
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-jest": "^22.4.3",
     "babel-polyfill": "^6.26.0",
     "file-loader": "^1.1.11",
     "moment-mini": "^2.19.4",
@@ -33,7 +34,8 @@
     "css-loader": "^0.28.10",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "jest": "^22.1.4",
+    "faker": "^4.1.0",
+    "jest": "^22.4.3",
     "standard": "^11.0.0",
     "style-loader": "^0.20.2",
     "webpack-dev-server": "^2.11.1"
@@ -43,6 +45,7 @@
     "build:dev": "webpack --config ./webpack.dev.js",
     "dev": "webpack-dev-server --config ./webpack.dev.js --open 'Google Chrome'",
     "lint": "standard --fix",
-    "test": "jest --config ./jest.config.json"
+    "test": "jest --config ./jest.config.json",
+    "test-watch": "jest --watch --config ./jest.config.json"
   }
 }

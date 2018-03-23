@@ -16,7 +16,7 @@ const InfoCard = styled.div`
   box-shadow: 0 0 10px 0 ${colors.primaryRed};
 `
 
-const Title = styled(H2)`
+const Title = H2.extend`
   margin-bottom: 2rem;
 `
 
