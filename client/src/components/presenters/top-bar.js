@@ -55,7 +55,7 @@ export default ({ search }) => (
       <GuyFox src={phoenixImage} />
     </ImageSection>
     <SearchSection>
-      <SearchInput className='search-input' placeholder={'Enter phoenix id'} onBlur={(event) => onInputChanged(event)} />
+      <SearchInput className='search-input' placeholder={'Enter phoenix id'} onBlur={event => onInputChanged(event)} />
       <SearchButtonWrapper>
         <Button className='search-button' displayText={'Search'} onClick={() => search(id)} />
       </SearchButtonWrapper>

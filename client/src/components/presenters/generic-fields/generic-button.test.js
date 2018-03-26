@@ -9,25 +9,25 @@ describe('generic button', () => {
   })
 
   test('adds display text', () => {
-    const subject = Shallow(<GenericButton displayText={randomWord} />)
+    const subject = shallow(<GenericButton displayText={randomWord} />)
 
     expect(subject.find('.generic-button').dive().text()).toEqual(randomWord)
   })
 
   test('adds disabled prop', () => {
-    const subject = Shallow(<GenericButton disabled={randomWord} />)
+    const subject = shallow(<GenericButton disabled={randomWord} />)
 
     expect(subject.find('.generic-button').props().disabled).toEqual(randomWord)
   })
 
   test('adds alt prop', () => {
-    const subject = Shallow(<GenericButton alt={randomWord} />)
+    const subject = shallow(<GenericButton alt={randomWord} />)
 
     expect(subject.find('.generic-button').props().alt).toEqual(randomWord)
   })
 
   test('adds onClick prop', () => {
-    const subject = Shallow(<GenericButton onClick={randomWord} />)
+    const subject = shallow(<GenericButton onClick={randomWord} />)
 
     expect(subject.find('.generic-button').props().onClick).toEqual(randomWord)
   })

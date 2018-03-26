@@ -5,7 +5,7 @@ describe('Top Bar', () => {
   test('clicking on button searches by id', () => {
     const randomId = faker.random.number()
     const fakeSearchFn = jest.fn()
-    const subject = Shallow(<TopBar search={fakeSearchFn} />)
+    const subject = shallow(<TopBar search={fakeSearchFn} />)
 
     subject.find('.search-input').simulate('blur', { target: { value: randomId } })
     subject.find('.search-button').simulate('click')

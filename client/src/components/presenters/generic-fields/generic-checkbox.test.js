@@ -10,7 +10,7 @@ describe('generic checkbox', () => {
 
   describe('label', () => {
     test('adds title', () => {
-      const subject = Shallow(<GenericCheckbox title={randomWord} />)
+      const subject = shallow(<GenericCheckbox title={randomWord} />)
 
       expect(subject.find('.checkbox-label').dive().text()).toEqual(randomWord)
     })
@@ -18,7 +18,7 @@ describe('generic checkbox', () => {
 
   describe('checkbox', () => {
     test('adds disabled prop', () => {
-      const subject = Shallow(<GenericCheckbox disabled={randomWord} />)
+      const subject = shallow(<GenericCheckbox disabled={randomWord} />)
 
       expect(subject.find('.checkbox').props().disabled).toEqual(randomWord)
     })
@@ -26,20 +26,20 @@ describe('generic checkbox', () => {
 
   describe('value', () => {
     test('sets checked when created with value prop', () => {
-      const subject = Shallow(<GenericCheckbox value={randomWord} />)
+      const subject = shallow(<GenericCheckbox value={randomWord} />)
 
       expect(subject.find('.checkbox').dive().props().checked).toEqual(randomWord)
     })
 
     test('defaults to checked being false when none is set', () => {
-      const subject = Shallow(<GenericCheckbox />)
+      const subject = shallow(<GenericCheckbox />)
 
       expect(subject.find('.checkbox').dive().props().checked).toEqual(false)
     })
 
     test('invokes on change when focus is lost', () => {
       const fakeOnChangeFn = jest.fn()
-      const subject = Shallow(<GenericCheckbox onChange={fakeOnChangeFn} />)
+      const subject = shallow(<GenericCheckbox onChange={fakeOnChangeFn} />)
       subject.find('.checkbox').simulate('change', { target: { checked: randomWord } })
 
       expect(fakeOnChangeFn).toHaveBeenCalledWith(randomWord)

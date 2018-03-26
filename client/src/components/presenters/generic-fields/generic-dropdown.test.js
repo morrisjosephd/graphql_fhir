@@ -15,13 +15,13 @@ describe('Generic Dropdown', () => {
 
   describe('options', () => {
     test('renders the correct number of options', () => {
-      const subject = Shallow(<GenericDropdown options={options} />)
+      const subject = shallow(<GenericDropdown options={options} />)
 
       expect(subject.find('option').length).toEqual(numberOfOptions + 1)
     })
 
     test('each option has the correct title', () => {
-      const subject = Shallow(<GenericDropdown options={options} />)
+      const subject = shallow(<GenericDropdown options={options} />)
       const allTitles = subject.find('option').map(it => it.text())
       const passedInTitles = options.map(it => it.text)
 
@@ -29,7 +29,7 @@ describe('Generic Dropdown', () => {
     })
 
     test('each option has the correct value', () => {
-      const subject = Shallow(<GenericDropdown options={options} />)
+      const subject = shallow(<GenericDropdown options={options} />)
       const allTitles = subject.find('option').map(it => it.props().value)
       const passedInValues = options.map(it => it.value)
 
@@ -37,7 +37,7 @@ describe('Generic Dropdown', () => {
     })
 
     test('the first option is disabled', () => {
-      const subject = Shallow(<GenericDropdown options={options} />)
+      const subject = shallow(<GenericDropdown options={options} />)
 
       expect(subject.find('option').first().props().disabled).toEqual(true)
     })
@@ -45,20 +45,20 @@ describe('Generic Dropdown', () => {
 
   describe('value', () => {
     test('sets the value when created with value prop', () => {
-      const subject = Shallow(<GenericDropdown options={options} value={options[0].value} />)
+      const subject = shallow(<GenericDropdown options={options} value={options[0].value} />)
 
       expect(subject.find('.dropdown').dive().props().value).toEqual(options[0].value)
     })
 
     test('defaults to empty value when none is set', () => {
-      const subject = Shallow(<GenericDropdown options={options} />)
+      const subject = shallow(<GenericDropdown options={options} />)
 
       expect(subject.find('.dropdown').dive().props().value).toEqual('')
     })
 
     test('invokes on change when value is changed', () => {
       const fakeOnChangeFn = jest.fn()
-      const subject = Shallow(<GenericDropdown options={options} onChange={fakeOnChangeFn} />)
+      const subject = shallow(<GenericDropdown options={options} onChange={fakeOnChangeFn} />)
       subject.find('.dropdown').simulate('change', { target: { value: options[0].value } })
 
       expect(fakeOnChangeFn).toHaveBeenCalledWith(options[0].value)

@@ -6,7 +6,7 @@ describe('Form Button Section', () => {
   beforeEach(() => {
     fakeClearFormFn = jest.fn()
     fakeSaveFn = jest.fn()
-    subject = Shallow(<FormButtonSection clearForm={fakeClearFormFn} save={fakeSaveFn} />)
+    subject = shallow(<FormButtonSection clearForm={fakeClearFormFn} save={fakeSaveFn} />)
   })
 
   test('calls the clear form function when clear button is clicked', () => {

@@ -10,13 +10,13 @@ describe('Dropdown with Title', () => {
 
   describe('label props', () => {
     test('adds title', () => {
-      const subject = Shallow(<DropdownWithTitle title={randomWord} />)
+      const subject = shallow(<DropdownWithTitle title={randomWord} />)
 
       expect(subject.find('.dropdown-label').dive().text()).toEqual(randomWord)
     })
 
     test('adds required', () => {
-      const subject = Shallow(<DropdownWithTitle required={randomWord} />)
+      const subject = shallow(<DropdownWithTitle required={randomWord} />)
 
       expect(subject.find('.dropdown-label').props().required).toEqual(randomWord)
     })
@@ -24,25 +24,25 @@ describe('Dropdown with Title', () => {
 
   describe('dropdown props', () => {
     test('adds alt', () => {
-      const subject = Shallow(<DropdownWithTitle alt={randomWord} />)
+      const subject = shallow(<DropdownWithTitle alt={randomWord} />)
 
       expect(subject.find('.dropdown').props().alt).toEqual(randomWord)
     })
 
     test('adds options', () => {
-      const subject = Shallow(<DropdownWithTitle options={randomWord} />)
+      const subject = shallow(<DropdownWithTitle options={randomWord} />)
 
       expect(subject.find('.dropdown').props().options).toEqual(randomWord)
     })
 
     test('adds onChange', () => {
-      const subject = Shallow(<DropdownWithTitle onChange={randomWord} />)
+      const subject = shallow(<DropdownWithTitle onChange={randomWord} />)
 
       expect(subject.find('.dropdown').props().onChange).toEqual(randomWord)
     })
 
     test('adds value', () => {
-      const subject = Shallow(<DropdownWithTitle value={randomWord} />)
+      const subject = shallow(<DropdownWithTitle value={randomWord} />)
 
       expect(subject.find('.dropdown').props().value).toEqual(randomWord)
     })

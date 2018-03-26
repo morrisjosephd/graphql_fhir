@@ -51,9 +51,10 @@
       "expect",
       "fail",
       "jest",
-      "Mount",
+      "mount",
       "render",
-      "Shallow",
+      "shallow",
+      "mountSubjectWithState",
       "test"
     ]
   },
