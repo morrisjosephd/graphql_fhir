@@ -13,7 +13,7 @@ const LocalLabel = Label.extend`
 
 export default ({ title, alt, required, value, onChange, options }) => (
   <DropdownWithTitle>
-    <LocalLabel required={required}>{title}</LocalLabel>
-    <Dropdown alt={alt} options={options} onChange={onChange} value={value} />
+    <LocalLabel className='dropdown-label' required={required}>{title}</LocalLabel>
+    <Dropdown className='dropdown' alt={alt} options={options} onChange={onChange} value={value} />
   </DropdownWithTitle>
 )

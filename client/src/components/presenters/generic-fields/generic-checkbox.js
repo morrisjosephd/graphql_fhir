@@ -35,8 +35,8 @@ export default class extends React.Component {
 
     return (
       <GenericCheckbox>
-        <LocalCheckbox type={'checkbox'} disabled={disabled} onChange={event => this.onChange(event)} checked={this.state.value} />
-        <Label>{title}</Label>
+        <LocalCheckbox className='checkbox' type={'checkbox'} disabled={disabled} onChange={event => this.onChange(event)} checked={this.state.value} />
+        <Label className='checkbox-label'>{title}</Label>
       </GenericCheckbox>
     )
   }

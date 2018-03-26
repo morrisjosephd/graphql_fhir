@@ -8,5 +8,5 @@ const GenericButton = Button.extend`
 `
 
 export default ({ displayText, onClick, alt, disabled }) => (
-  <GenericButton onClick={onClick} alt={alt} disabled={disabled}>{displayText}</GenericButton>
+  <GenericButton className='generic-button' onClick={onClick} alt={alt} disabled={disabled}>{displayText}</GenericButton>
 )

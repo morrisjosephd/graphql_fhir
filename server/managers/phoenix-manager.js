@@ -1,5 +1,4 @@
 const mongoService = require('../services/mongo')
-const flatmap = require('lodash.flatmap')
 
 module.exports.getPhoenixDetails = async id => {
   const foundPhoenix = await mongoService.findOne('phoenix', id)
