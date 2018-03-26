@@ -1,5 +1,5 @@
 {
-  "setupFiles": ["./test-helpers/test-start-point.js"],
+  "setupFiles": ["<rootDir>/test-helpers/test-start-point.js"],
   "moduleNameMapper": {
     "\\.(css|scss)$": "identity-obj-proxy",
     "\\.(jpg|png|gif)$": "<rootDir>/test-helpers/mock-image-string.js",

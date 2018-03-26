@@ -38,7 +38,7 @@ describe('Generic Dropdown', () => {
 
     test('the first option is disabled', () => {
       const subject = Shallow(<GenericDropdown options={options} />)
-      
+
       expect(subject.find('option').first().props().disabled).toEqual(true)
     })
   })
@@ -46,13 +46,13 @@ describe('Generic Dropdown', () => {
   describe('value', () => {
     test('sets the value when created with value prop', () => {
       const subject = Shallow(<GenericDropdown options={options} value={options[0].value} />)
-  
+
       expect(subject.find('.dropdown').dive().props().value).toEqual(options[0].value)
     })
 
     test('defaults to empty value when none is set', () => {
       const subject = Shallow(<GenericDropdown options={options} />)
-  
+
       expect(subject.find('.dropdown').dive().props().value).toEqual('')
     })
 

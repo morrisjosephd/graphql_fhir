@@ -1,5 +1,3 @@
-import moment from 'moment-mini'
-
 export default {
   phoenix: {
     isAlive: true

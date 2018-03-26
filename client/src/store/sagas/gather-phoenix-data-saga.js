@@ -13,6 +13,8 @@ export default function * runSaga () {
       timeout: call(delay, config.timeout)
     })
 
+    if (phoenixDetails === undefined) { continue }
+
     yield put({ type: actionTypes.phoenix.SET_PHOENIX_INFO, value: phoenixDetails })
 
     yield put({ type: actionTypes.presentation.SHOW_FORM })

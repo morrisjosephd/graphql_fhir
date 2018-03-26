@@ -1,6 +1,5 @@
 import React from 'react'
 import colors from '../../styles/colors'
-import { H2 } from '../../styles/components'
 import styled from 'styled-components'
 import PhoenixColorDropdown from '../containers/phoenix-form-fields/color-dropdown'
 import PhoenixIsAliveCheckbox from '../containers/phoenix-form-fields/is-alive-checkbox'
@@ -14,10 +13,6 @@ const InfoCard = styled.div`
   background-color: ${colors.white}
   border: 1px solid ${colors.lightGray};
   box-shadow: 0 0 10px 0 ${colors.primaryRed};
-`
-
-const Title = H2.extend`
-  margin-bottom: 2rem;
 `
 
 const Row = styled.div`

@@ -1,5 +1,4 @@
 import FormButtonSection from './form-button-section'
-import faker from 'faker'
 
 describe('Form Button Section', () => {
   let subject, fakeClearFormFn, fakeSaveFn

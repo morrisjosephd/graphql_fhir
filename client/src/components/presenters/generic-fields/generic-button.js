@@ -1,6 +1,5 @@
 import React from 'react'
 import { Button } from '../../../styles/components'
-import styled from 'styled-components'
 
 const GenericButton = Button.extend`
   height: 50px;
