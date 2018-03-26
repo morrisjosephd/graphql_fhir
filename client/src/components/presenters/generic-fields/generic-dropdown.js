@@ -41,7 +41,7 @@ export default class extends React.Component {
 
     return (
       <GenericDropdown>
-        <Dropdown textColor={colorPalette.text} backgroundColor={colorPalette.background} onChange={event => this.onChange(event)} value={this.state.value}>
+        <Dropdown className='dropdown' textColor={colorPalette.text} backgroundColor={colorPalette.background} onChange={event => this.onChange(event)} value={this.state.value}>
           <option value='' disabled>Select One</option>
           {options.map(this.createOption)}
         </Dropdown>
