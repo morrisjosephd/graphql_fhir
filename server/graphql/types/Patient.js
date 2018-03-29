@@ -1,37 +1,89 @@
-const {GraphQLObjectType, GraphQLString} = require('graphql')
-const axios = require('axios')
+const {GraphQLObjectType, GraphQLString, GraphQLList} = require('graphql')
+const patientManager = require('../../managers/patient-manager')
 
 module.exports.Patient = new GraphQLObjectType({
   name: 'patient',
   description: 'patient meta data',
   fields: () => ({
+    patientId: {
+      type: GraphQLString,
+      description: 'Patient id'
+    },
     firstName: {
       type: GraphQLString,
-      description: 'The patients first name'
+      description: 'Patient first name'
     },
     lastName: {
       type: GraphQLString,
-      description: 'The patients last name'
+      description: 'Patient last name'
     },
-    fullName: {
+    dob: {
       type: GraphQLString,
-      description: 'The patients full name'
+      description: 'Patient date of birth'
     },
-    patientId: {
+    gender: {
       type: GraphQLString,
-      description: 'The patients id'
+      description: 'Patient gender'
+    },
+    address: {
+      type: Address,
+      description: 'Patient home address'
+    },
+    phoneNumber: {
+      type: PhoneNumber,
+      description: 'Patient home phone number'
     }
   })
 })
 
-module.exports.patientResolver = async (root, args, context, info) => {
-  const {firstName, lastName} = args
-  let foundPatient = await axios.get(`https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient?family=${lastName}&given=${firstName}`)
-  let patient = {}
-  patient.firstName = firstName
-  patient.lastName = lastName
-  patient.fullName = `${firstName} ${lastName}`
-  patient.patientId = foundPatient.data.entry[0].resource.id
+const Address = new GraphQLObjectType({
+  name: 'address',
+  description: 'mailing address',
+  fields: () => ({
+    line: {
+      type: new GraphQLList(GraphQLString),
+      description: 'Street address meta data'
+    },
+    city: {
+      type: GraphQLString,
+      description: 'City'
+    },
+    state: {
+      type: GraphQLString,
+      description: 'State'
+    },
+    postalCode: {
+      type: GraphQLString,
+      description: 'Postal Code'
+    }
+  })
+})
 
-  return patient
+const PhoneNumber = new GraphQLObjectType({
+  name: 'phoneNumber',
+  description: 'phone number',
+  fields: () => ({
+    use: {
+      type: GraphQLString,
+      description: 'type of phone number [home, work, etc]'
+    },
+    value: {
+      type: GraphQLString,
+      description: 'phone number'
+    }
+  })
+})
+
+module.exports.patientListResolver = async (root, args, context, info) => {
+  const {firstName, lastName} = args
+
+  let foundPatients = await patientManager.searchForPatients(firstName, lastName)
+
+  return foundPatients
+}
+
+module.exports.patientResolver = async (root, args, context, info) => {
+  let foundPatient = await patientManager.getPatientDetails(args.patientId)
+
+  return foundPatient
 }
