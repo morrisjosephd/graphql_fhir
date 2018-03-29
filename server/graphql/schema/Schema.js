@@ -2,23 +2,33 @@ const {
   GraphQLObjectType,
   GraphQLNonNull,
   GraphQLSchema,
-  GraphQLString
+  GraphQLString,
+  GraphQLList
 } = require('graphql')
 
-const {Patient, patientResolver} = require('../types/Patient')
+const {Patient, patientListResolver, patientResolver} = require('../types/Patient')
 const {Observation, observationResolver} = require('../types/Observation')
 
 module.exports.schema = new GraphQLSchema({
   query: new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
-      patient: {
-        type: Patient,
+      patientList: {
+        type: new GraphQLList(Patient),
         args: {
           firstName: {
             type: new GraphQLNonNull(GraphQLString)
           },
           lastName: {
+            type: new GraphQLNonNull(GraphQLString)
+          }
+        },
+        resolve: patientListResolver
+      },
+      patient: {
+        type: Patient,
+        args: {
+          patientId: {
             type: new GraphQLNonNull(GraphQLString)
           }
         },
